@@ -1,0 +1,145 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layouts/standardLayout :: page(title='Sign Up')">
+
+<div th:fragment="main" style="display:flex; justify-content: space-around;">
+    <div class="jumbotron text-center mt-5" style="width: 75%;
+                                       display: flex; flex-direction: column; justify-content: flex-start;">
+
+
+        <form id="myForm" action="/addUser" method="POST" th:object="${userForm}">
+            <div class="form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-10">
+
+                    <div class="alert alert-dark" role="alert">
+                        <h1 th:text="#{registerForm.title}">Registration Form</h1>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <input type="text" class="form-control" id="firstName"
+                                   th:placeholder="#{registerForm.placeholder.name}"
+                                   aria-describedby="firstNamePrepend" th:field="*{firstName}"/>
+                            <div class="input-group-append">
+                        <span th:errors="*{firstName}" class="input-group-text error"
+                              id="firstNamePrepend">First name</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" class="form-control" id="lastName"
+                                   aria-describedby="lastNamePrepend"
+                                   th:placeholder="#{registerForm.placeholder.surname}"
+                                   th:field="*{lastName}">
+                            <div class="input-group-append">
+                            <span th:errors="*{lastName}" class="input-group-text error"
+                                  id="lastNamePrepend">Last name</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <!--                    <div class="input-group-prepend" th:text="#{registerForm.placeholder.at}">>-->
+                            <!--                            <span class="input-group-text" id="emailPrepend"-->
+                            <!--                                  </span>-->
+                            <!--                    </div>-->
+                            <input type="text" class="form-control" id="email"
+                                   th:placeholder="#{registerForm.placeholder.email}"
+                                   aria-describedby="emailPrepend" aria-label="errorPrepend" th:field="*{email}">
+                            <div class="input-group-append">
+                                <span th:errors="*{email}" class="input-group-text error"></span>
+                            </div>
+                            <span th:unless="${#fields.hasErrors('email')}" th:if="${emailExistsError}"
+                                  th:text="#{error.emailExists}" class="input-group-text error"></span>
+                        </div>
+                    </div>
+
+                    <!--            Second Row          -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <div class="input-group-prepend">
+                            <span th:errors="*{password}" class="input-group-text error"
+                                  id="passwordPrepend">Password</span>
+                            </div>
+                            <input type="password" class="form-control" name="password"
+                                   aria-describedby="passwordPrepend" th:errprclass="invalid"
+                                   th:placeholder="#{registerForm.placeholder.password}" th:field="*{password}"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="password" class="form-control" name="confirmPassword"
+                                   aria-describedby="passwordRepeatAppend" th:field="*{confirmPassword}"
+                                   th:placeholder="#{registerForm.placeholder.confirmPassword}"/>
+                            <div class="input-group-append">
+                            <span th:if="${#fields.hasErrors('confirmPassword')}" class="input-group-text error"
+                                  id="passwordRepeatAppend">Passwords must match!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--            Third Row          -->
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="input-group-prepend">
+                            <span th:errors="*{address}" class="input-group-text error"
+                                  id="addressPrepend">Address</span>
+                            </div>
+                            <input type="text" class="form-control" id="address" aria-describedby="addressPrepend"
+                                   th:placeholder="#{registerForm.placeholder.address}"
+                                   th:field="*{address}">
+                        </div>
+                    </div>
+
+                    <!--            Fourth Row          -->
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <div class="input-group-prepend">
+                                <span th:errors="*{city}" class="input-group-text error" id="cityPrepend">City</span>
+                            </div>
+                            <input type="text" class="form-control" id="city" aria-describedby="cityPrepend"
+                                   th:placeholder="#{registerForm.placeholder.city}" th:field="*{city}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select id="country" class="form-control" name="country"
+                                    th:field="*{country}">
+                                <option value="country" selected th:text="#{registerForm.placeholder.country}">Country
+                                </option>
+                                <option th:each="country: ${countries}" th:text="${country.value}"
+                                        th:value="${country.key}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" class="form-control" id="postalCode" aria-describedby="postalCodePrepend"
+                                   th:field="*{postalCode}" th:placeholder="#{registerForm.placeholder.postalCode}">
+                            <div class="input-group-append">
+                            <span th:errors="*{postalCode}" class="input-group-text error"
+                                  id="postalCodePrepend">City</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--            Fifth (empty) Row          -->
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12"></div>
+                    </div>
+
+                    <!--            Sixth Row          -->
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3"></div>
+                        <div class="form-group col-md-6">
+                            <button class="btn btn-success btn-block btn-lg" type="submit" th:text="#{button.register}">Sign up</button>
+                        </div>
+                        <div class="form-group col-md-3"></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="form-group col-md-1"></div>
+        </form>
+
+    </div>
+</div>

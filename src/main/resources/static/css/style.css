@@ -1,0 +1,88 @@
+.footerJ {
+    bottom: 0;
+    color: #707070;
+    height: 2em;
+    left: 0;
+    position: fixed;
+    font-size: small;
+    width: 100%;
+}
+
+.login {
+    margin-bottom:5px;
+}
+
+.login-menu {
+    width: 300px !important;
+    padding: 15px 15px 10px;
+}
+a {
+    cursor: pointer;
+}
+li {
+    list-style-type: none;
+}
+
+.error {
+    background: #FEC82F;
+}
+
+.badge {
+    font-size: 4em;
+}
+
+#languages ul {
+    padding-left: 0;
+}
+
+.centered {
+    display: block;
+    margin: 0 auto;
+}
+
+.productRow {
+    float: left;
+}
+
+.hidden {
+    display: none;
+}
+
+.productGroup {
+    display: flex;
+    align-items: flex-end;
+}
+
+.product {
+    border: 0;
+}
+
+.title {
+    margin-top: 2%;
+}
+
+.buttonWithMargins {
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.dropdownCart {
+}
+
+.myCart {
+    width: 14em;
+    margin-top: 10%;
+}
+
+.oneSignButton {
+    width: 30px;
+    height: 35px;
+}
+
+.myFade {
+    opacity: 0.20;
+}
+
+.myFade:not(.show) {
+    opacity: 0;
+}

@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="login">
+    <form class="form-horizontal" method="post" action="/login" accept-charset="UTF-8">
+        <input class="form-control login" type="text" name="email"
+               th:placeholder="|#{navbar.email}...|"/>
+        <input class="form-control login" type="password" name="password"
+               th:placeholder="|#{navbar.password}...|"/>
+        <input class="btn btn-primary" type="submit" name="submit" th:value="#{navbar.login}"/>
+    </form>
+</div>

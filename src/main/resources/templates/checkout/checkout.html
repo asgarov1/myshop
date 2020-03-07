@@ -1,0 +1,71 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:include="layouts/standardLayout :: page(title=#{checkout.title})">
+
+<body>
+<div th:replace="fragments/navbar :: navigation"></div>
+<div class="container" th:fragment="main">
+    <h1 class="alert alert-dark" th:text="#{checkout.title}">Checkout</h1>
+    <hr/>
+
+    <p th:if="${productsInCart==null || productsInCart.isEmpty()}" th:text="#{cart.empty}">
+        Your shopping cart is empty
+    </p>
+
+    <div th:if="${productsInCart!=null && productsInCart.size() > 0}">
+        <div class="container">
+            <hr/>
+            <div class="form-row" th:each="product : ${productsInCart}"> <!--th:classappend="${productStat.odd}? 'odd'"-->
+                <div class="form-group col-md-2">
+                    <a th:href="@{/showProduct(id=${product.getKey().id})}">
+                        <img style="width: 100px;" th:src="@{|/images/${product.getKey().imageName}|}">
+                    </a>
+                </div>
+                <div class="form-group col-md-2">
+                    <a th:text="${product.getKey().name}"
+                       th:href="@{/showProduct(id=${product.getKey().id})}">Title</a>
+                </div>
+                <div class="form-group col-md-2" th:text="|#{product.quantity} ${product.getValue()}|"></div>
+                <div class="form-group col-md-2">
+                    <a th:href="@{/adjust/addToCart/__${product.getKey().id}__/}">
+                        <button type="button" class="btn btn-sm btn-primary buttonWithMargins oneSignButton" th:text="#{button.add}">+</button>
+                    </a>
+                    <a th:href="@{/adjust/subtractFromCart/__${product.getKey().id}__/}">
+                        <button type="button" class="btn btn-sm btn-primary buttonWithMargins oneSignButton"
+                                th:text="#{button.subtract}">-</button>
+                    </a>
+                </div>
+                <div class="form-group col-md-2" th:text="'$'+ (${product.getKey().price} * ${product.getValue()})"></div>
+                <div class="form-group col-md-2">
+                    <a th:href="@{/removeProduct/(id=${product.getKey().id})}">
+                        <button type="button" class="btn btn-danger"
+                                th:text="#{button.remove}">Remove</button>
+                    </a>
+                </div>
+                <br/>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8"></div>
+                <div class="form-group col-md-4">
+                    <h4 th:text="|#{cart.total} $${total}|">Total:</h4>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-4">
+                        <button type="button" class="btn btn-primary btn-block" th:text="#{button.placeOrderAsGuest}"
+                                data-toggle="modal" data-target="#orderAsGuestModal"></button>
+                </div>
+                <div class="form-group col-md-4">
+                        <button type="button" class="btn btn-success btn-block" th:text="#{button.loginAndPlaceOrder}"
+                                data-toggle="modal" data-target="#loginModal"></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="fragments/modals/loginModal :: login"></div>
+    <div th:replace="fragments/modals/orderAsGuestModal :: order"></div>
+
+</div>

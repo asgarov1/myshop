@@ -1,0 +1,73 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="display: flex; align-items: baseline;">
+        <a class="navbar-brand" th:href="@{/}">@Business</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--            Collapsing Content-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" id="languages" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <ul th:switch="__${#locale.language}__">
+                            <li th:case="en" th:text="|#{navbar.language.english.icon}|"></li>
+                            <li th:case="ru" th:text="|#{navbar.language.russian.icon}|"></li>
+                            <li th:case="*" th:text="|#{navbar.language.english.icon}|"></li>
+                        </ul>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-content" aria-labelledby="languages"
+                        th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                        <li>
+                            <a class="dropdown-item"
+                               th:href="@{${urlBuilder.replaceQueryParam('lang', 'en').toUriString()}}"
+                               th:text="|#{navbar.language.english}|">English</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               th:href="@{${urlBuilder.replaceQueryParam('lang', 'ru').toUriString()}}"
+                               th:text="|#{navbar.language.russian}|">Russian</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" th:unless="#{user}"><a class="nav-link" th:href="@{/addUser}" th:text="#{navbar.signUp}"><span
+                        class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+                <li th:unless="#{user}" class="nav-item dropdown">
+                    <a class="nav-link" href="#" data-toggle="dropdown" th:text="#{navbar.login}">
+                        Login
+                    </a>
+                    <div class="login-menu dropdown-menu">
+                        <div th:replace="fragments/login :: login"></div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" th:if="${user}" th:text="|Logged in as ${user.firstName}|"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" data-toggle="dropdown" th:text="#{navbar.shoppingCart}">
+                        Your Shopping Cart</a>
+                    <div class="dropdown-menu">
+                        <div th:replace="fragments/shoppingCartMini :: shoppingCart"></div>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/checkout}"
+                                        th:text="#{navbar.checkout}"></span>Checkout</a>
+                </li>
+            </ul>
+            <a th:text="#{navbar.admin}" th:href="@{/admin}">Admin</a>
+            <form class="form-inline my-2 my-lg-0" action="/search" method="GET">
+                <input class="form-control mr-sm-2" type="search" name="searchInput"
+                       th:placeholder="#{navbar.search}"
+                       aria-label="Search">
+                <button class="btn btn-warning my-2 my-sm-0" type="submit" th:text="#{navbar.search}">
+                    Search
+                </button>
+            </form>
+        </div>
+    </nav>
+</div>

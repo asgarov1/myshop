@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layouts/standardLayout :: page(title='@Business')">
+
+<div class="container" th:fragment="main">
+    <br>
+    <h1>Howdy admin!</h1>
+    <br>
+
+    <!--        First Row         -->
+
+    <form method="post" th:action="@{/searchUsersBy/}">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="searchParameter" placeholder="word to search by...">
+            </div>
+            <div class="form-group input-group col-md-6">
+                <select class="custom-select" name="searchOption" aria-label="">
+                    <option selected>Search by...</option>
+                    <option value="surname">Surname</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div th:if="${results}">
+        <h5>Results</h5>
+        <ul th:each="result: ${results}">
+            <li th:text="${result}"></li>
+        </ul>
+    </div>
+    <div th:unless="${results}">
+        <p>No results yet</p>
+    </div>
+</div>
+
+

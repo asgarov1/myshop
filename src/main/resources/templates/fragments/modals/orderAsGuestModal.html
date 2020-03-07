@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="order">
+    <!--    Order As Guest Modal     -->
+    <div class="modal" id="orderAsGuestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" th:text="#{form.checkout.title}">Login title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form class="form-horizontal" method="post" action="/submitOrderAsGuest"
+                      th:object="${orderForm}" accept-charset="UTF-8">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="firstName"
+                                       th:placeholder="#{registerForm.placeholder.name}" th:field="*{firstName}"/>
+                            </div>
+                            <div class="col-md-6 ml-auto">
+                                <input type="text" class="form-control" id="lastName"
+                                       th:placeholder="#{registerForm.placeholder.surname}" th:field="*{lastName}"/>
+                            </div>
+                        </div>
+
+                        <!--        Second Row      -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="email"
+                                       th:placeholder="#{registerForm.placeholder.email}" th:field="*{email}"/>
+                            </div>
+                            <div class="col-md-6 ml-auto">
+                                <input type="text" class="form-control" id="phoneNumber"
+                                       th:placeholder="#{registerForm.placeholder.phoneNumber}"
+                                       th:field="*{phoneNumber}"/>
+                            </div>
+                        </div>
+
+                        <!--        Third Row      -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="address"
+                                       th:placeholder="#{registerForm.placeholder.address}" th:field="*{address}"/>
+                            </div>
+                        </div>
+
+                        <!--        Fourth Row      -->
+                        <div class="row">
+                            <div class="col-md-4 ml-auto">
+                                <input type="text" class="form-control" id="city"
+                                       th:placeholder="#{registerForm.placeholder.city}" th:field="*{city}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="postalCode"
+                                       th:placeholder="#{registerForm.placeholder.postalCode}"
+                                       th:field="*{postalCode}"/>
+                            </div>
+                            <div class="col-md-4 ml-auto">
+                                <input type="text" class="form-control" id="country"
+                                       th:placeholder="#{registerForm.placeholder.country}" th:field="*{country}"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btn-block" th:text="#{button.submitOrder}"
+                                type="submit">Submit order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer class="footerJ text-muted text-center" th:fragment="footer">
+    <div class="container">
+        <span th:text="#{footer.text.part1}">No rights reserved. Please visit our </span>
+        <span class="text-muted"><a href="#" th:text="#{footer.text.termsAndConditions}">Terms and Conditions</a></span>
+        <span th:text="#{footer.text.part2}"> to find out why you don't want anything from this website</span>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+<!--    v. 4.4.1-->
+    <script src="static/js/bootstrap.js" th:src="@{js/bootstrap.js}"></script>
+<!--    <script src="static/js/bootstrap.bundle.js" th:src="@{js/bootstrap.bundle.js}"></script>-->
+
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</footer>
+</body>
+</html>

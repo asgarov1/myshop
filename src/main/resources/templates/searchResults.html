@@ -1,0 +1,8 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layouts/standardLayout :: page(title='Search results')">
+
+<div class="container" th:fragment="main">
+    <h3 class="text-center" th:if="${products.size() == 0}" th:text="|#{searchResults.nothingFound} `${searchInput}`|"></h3>
+    <h3 class="text-center" th:if="${products.size() > 0}" th:text="#{searchResults.title}"></h3>
+    <hr>
+    <div th:replace="fragments/products :: products"></div>
+</div>

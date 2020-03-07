@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(pageTitle)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title th:text="${pageTitle}"></title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" th:href="@{css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-grid.css" th:href="@{css/bootstrap-grid.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-reboot.css" th:href="@{css/bootstrap-reboot.css}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"
+          th:href="@{css/style.css}" media="screen">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+
+</head>
+</html>

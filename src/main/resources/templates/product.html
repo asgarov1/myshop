@@ -1,0 +1,24 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layouts/standardLayout :: page(title=${product.name})">
+
+<div class="container" th:fragment="main">
+    <div class="card" style="margin: 0 auto; width: 20em;">
+        <img class="card-img-top" th:src="@{|/images/${product.imageName}|}">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${product.name} + ' $' + ${product.price}"></h5>
+            <p class="text-muted" th:text="${product.description}"></p>
+            <form th:action="@{/addToCart/__${product.id}__/}" style="display: flex; justify-content: flex-start;">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input class="text-center form-control" name="amount" type="text" value="1"
+                               style="width: 15%;"/>
+                        <button class="btn btn-success buttonWithMargins"
+                                onclick="submit" th:text="#{button.addToCart}">View more
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <br><br>
+</div>

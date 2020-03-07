@@ -1,0 +1,13 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layouts/standardLayout :: page(title='@Business')">
+
+<div class="container" th:fragment="main">
+    <h1 class="indigo-text text-center" th:text="${error}">Not found</h1>
+    <hr>
+    <img th:src="@{/images/error.png}" class="centered" alt="Responsive image">
+    <p class="col s12 center" th:text="${message}">This page is not available</p>
+    <hr>
+    <p class="col s12 center" th:text="${trace}">This page is not available</p>
+</div>
+
+
+</body>

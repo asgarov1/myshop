@@ -1,0 +1,12 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layouts/standardLayout :: page(title='users')">
+
+<div class="container" th:fragment="main">
+    <h1 class="text-center">Persisted Users:</h1>
+    <hr>
+    <ul th:if="${entities}" th:each="entity : ${entities}">
+        <li th:text="${entity}"></li>
+    </ul>
+
+    <p th:if="${cart}" th:text="${cart}">
+
+</div>

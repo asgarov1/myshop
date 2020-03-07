@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="layouts/standardLayout :: page(title='@Business')">
+
+<div class="container" th:fragment="main">
+    <h1>Success! Here are all the orders:</h1>
+
+    <ul th:if="${orders}" th:each="order : ${orders}">
+        <li>
+            <ul>
+                <li th:text="|Order ID: ${order.id}|"></li>
+                <li th:text="|Order Date: ${order.localDate}|"></li>
+                <br/>
+                <li><h4>Contact Details</h4></li>
+                <li th:text="|firstName: ${order.firstName}|"></li>
+                <li th:text="|lastName: ${order.lastName}|"></li>
+                <li th:text="|email: ${order.email}|"></li>
+                <li th:text="|phoneNumber: ${order.phoneNumber}|"></li>
+                <li th:text="|address: ${order.address}|"></li>
+                <li th:text="|city: ${order.city}|"></li>
+                <li th:text="|postalCode: ${order.postalCode}|"></li>
+                <li th:text="|country: ${order.country}|"></li>
+
+                <li>
+                    <p>Ordered Products:</p>
+                    <ul th:each="orderItem : ${order.orderedProducts}" style="float:left;">
+                        <li>
+                            <img th:src="@{|/images/${orderItem.product.imageName}|}">
+                        </li>
+                        <li th:text="${orderItem.product.name}"></li>
+                        <li th:text="|$${orderItem.product.price}|"></li>
+                        <li th:text="|QuantityOrdered: ${orderItem.quantityOrdered}|"></li>
+                    </ul>
+                </li>
+                <div style="clear:both;"></div>
+            </ul>
+            <hr/><br/>
+        </li>
+    </ul>
+</div>
+

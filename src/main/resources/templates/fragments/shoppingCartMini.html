@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container" th:fragment="shoppingCart">
+    <!--    <h4 th:text="#{cart.title}">Shopping Cart</h4>-->
+    <!--    <hr/>-->
+
+    <p th:if="${productsInCart==null || productsInCart.isEmpty()}" th:text="#{cart.empty}">
+        Your shopping cart is empty
+    </p>
+
+    <div th:if="${productsInCart!=null && productsInCart.size() > 0}">
+        <div class="form-row myCart" th:each="product : ${productsInCart}">
+            <div class="form-group col-md-3">
+                <img style="width: 50px;" th:src="@{|/images/${product.getKey().imageName}|}">
+            </div>
+            <div class="form-group col-md-2" th:text="|$${product.getKey().price}|"></div>
+            <div class="form-group col-md-2" th:text="|x${product.getValue()}|"></div>
+            <div class="form-group col-md-4">
+                <a th:href="@{/removeProduct/(id=${product.getKey().id})}">
+                    <button type="button" class="btn btn-danger btn-sm" th:text="#{button.remove}">Remove</button>
+                </a>
+            </div>
+            <div class="form-group col-md-1"></div>
+            <br/>
+        </div>
+
+        <!--        Checkout part        -->
+        <hr/>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-2">
+                <h6 th:text="|$${total}|">Total:</h6>
+            </div>
+            <div class="form-group col-md-1"></div>
+            <div class="form-group col-md-5">
+                <a th:href="@{/checkout}">
+                    <button type="button" class="btn btn-success" th:text="#{button.checkout}"></button>
+                </a>
+            </div>
+            <div class="form-group col-md-1"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

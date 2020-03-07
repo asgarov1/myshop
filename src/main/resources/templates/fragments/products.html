@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="products">
+    <h1 class="display-2 title" th:text="#{title.products}"></h1>
+    <hr>
+
+    <div class="card-group container productGroup">
+        <div class="card product" th:if="${products.size() > 0}" th:each="product : ${products}" style="width: 30em;">
+            <img class="card-img-top" th:src="@{|/images/${product.imageName}|}" alt="product image">
+            <div class="card-body">
+                <h5 class="card-title" th:text="|${product.name} $${product.price}|"></h5>
+                <p class="text-muted" th:text="${product.description}"></p>
+                <form th:action="@{/addToCart/__${product.id}__/}">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <a th:href="@{/showProduct(id=${product.id})}" class="btn btn-primary buttonWithMargins"
+                               th:text="#{button.viewMore}">View more</a>
+
+                            <input class="text-center form-control" name="amount" type="text" value="1"
+                                   style="width: 10%;"/>
+                            <button class="btn btn-success buttonWithMargins"
+                                    onclick="submit" th:text="#{button.addToCart}">View more
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
