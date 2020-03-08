@@ -83,12 +83,12 @@ public class CartController {
         return "checkout/orderConfirmation";
     }
 
-    @ModelAttribute("/productsInCart")
+    @ModelAttribute("productsInCart")
     public Map<Product, Integer> productsInCart() {
         return shoppingCart.getProductsInCart();
     }
 
-    @ModelAttribute("/total")
+    @ModelAttribute("total")
     public Integer total() {
         return shoppingCart.calculateTotal();
     }

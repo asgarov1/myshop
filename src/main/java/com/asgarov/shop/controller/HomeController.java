@@ -1,5 +1,6 @@
 package com.asgarov.shop.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import com.asgarov.shop.entity.Cart;
@@ -17,21 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     private ProductService productService;
-    private PersonService personService;
     private Cart shoppingCart;
 
-    public HomeController(
-            final ProductService productService,
-            final PersonService personService,
-            final Cart shoppingCart) {
+    public HomeController(final ProductService productService, final Cart shoppingCart) {
         this.productService = productService;
-        this.personService = personService;
         this.shoppingCart = shoppingCart;
     }
 
     @GetMapping({"/", "", "/index"})
     public String home(Model model) {
-        model.addAttribute("products", productService.findAll());
         return "index";
     }
 
@@ -42,14 +37,19 @@ public class HomeController {
         return "searchResults";
     }
 
-    @ModelAttribute("/productsInCart")
+    @ModelAttribute("productsInCart")
     public Map<Product, Integer> productsInCart() {
         return shoppingCart.getProductsInCart();
     }
 
-    @ModelAttribute("/total")
+    @ModelAttribute("total")
     public Integer total() {
         return shoppingCart.calculateTotal();
+    }
+
+    @ModelAttribute("products")
+    public List<Product> allProducts() {
+        return productService.findAll();
     }
 
 //    @ModelAttribute
