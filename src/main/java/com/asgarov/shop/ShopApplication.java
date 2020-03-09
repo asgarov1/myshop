@@ -10,4 +10,9 @@ public class ShopApplication {
         SpringApplication.run(ShopApplication.class, args);
     }
 
+    //TODO:
+    // 1. Confirmation for the product add
+    // 2. Checkout page (Checkout page should have option to login as well as checkout as guest)
+    // 3. Account page (Past orders to be shown on the account page)
+    // 4. Give Admin ability to enter products in the API
 }

@@ -20,9 +20,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
 @Scope("session")
-public class Cart extends AbstractPersistable<Long> {
+public class Cart {
 
     @ElementCollection
     private Map<Product, Integer> productsInCart = new HashMap<>();
@@ -32,13 +31,13 @@ public class Cart extends AbstractPersistable<Long> {
     }
 
     public void addProduct(Product product) {
-        productsInCart.computeIfPresent(product, (key, value) -> ++value);
         productsInCart.putIfAbsent(product, 1);
+        productsInCart.computeIfPresent(product, (key, value) -> ++value);
     }
 
     public void addProduct(Product product, int amount) {
-        productsInCart.computeIfPresent(product, (key, value) -> (value+amount));
         productsInCart.putIfAbsent(product, amount);
+        productsInCart.computeIfPresent(product, (key, value) -> (value+amount));
     }
 
     public void subtractProduct(final Product product) {

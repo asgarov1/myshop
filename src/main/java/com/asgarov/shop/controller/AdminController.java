@@ -2,12 +2,15 @@ package com.asgarov.shop.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.asgarov.shop.entity.Product;
+import com.asgarov.shop.entity.User;
 import com.asgarov.shop.service.OrderService;
 import com.asgarov.shop.service.UserService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,6 +50,14 @@ public class AdminController {
         default: model.addAttribute("orders", orderService.findAllByIdDateLastName(searchParameter)); break;
         }
         return "admin/index";
+    }
+
+    @GetMapping("user/{id}/orders")
+    public String showUsersOrders(@PathVariable Long id, HttpServletRequest request, Model model) {
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        model.addAttribute("orders", user.getOrders());
+        return "userOrders";
     }
 
 }

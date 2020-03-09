@@ -21,38 +21,38 @@ import lombok.ToString;
 public class UserForm{
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String firstName;
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String lastName;
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     @Email
-    private String email; //also username
+    private String email;
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String password;
 
     @NotNull
     private String confirmPassword;
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String address;
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String city;
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String postalCode;
 
     @NotNull
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String country;
 }

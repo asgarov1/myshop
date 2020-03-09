@@ -38,9 +38,10 @@ public class CartController {
 
     //    TODO: add confirmation?
     @GetMapping("addToCart/{id}/")
-    public String addToCartWithAmount(@PathVariable Long id, @RequestParam Integer amount, HttpServletRequest request) {
+    public String addToCartWithAmount(@PathVariable Long id, @RequestParam Integer amount, HttpServletRequest request, Model model) {
         Product product = productService.find(id);
         shoppingCart.addProduct(product, amount);
+        model.addAttribute("confirm", id.toString());
         return "redirect:" + request.getHeader("Referer");
     }
 

@@ -16,10 +16,10 @@ import lombok.Setter;
 public class Admin extends Person {
 
     public Admin(
-            @NotNull @NotEmpty(message = "{registerForm.error.empty}") final String firstName,
-            @NotNull @NotEmpty(message = "{registerForm.error.empty}") final String lastName,
-            @NotNull @NotEmpty(message = "{registerForm.error.empty}") @Email final String email,
-            @NotNull @NotEmpty(message = "{registerForm.error.empty}") final String password) {
+            @NotNull @NotEmpty(message = "{error.empty}") final String firstName,
+            @NotNull @NotEmpty(message = "{error.empty}") final String lastName,
+            @NotNull @NotEmpty(message = "{error.empty}") @Email final String email,
+            @NotNull @NotEmpty(message = "{error.empty}") final String password) {
         super(firstName, lastName, email, password);
     }
 

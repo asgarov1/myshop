@@ -24,7 +24,7 @@ public class ContactDetails extends AbstractPersistable<Long> {
 
     @Column
     @NotNull
-    @NotEmpty(message = "{registerForm.error.empty}")
+    @NotEmpty(message = "{error.empty}")
     String firstName;
 
     @Column
@@ -32,7 +32,7 @@ public class ContactDetails extends AbstractPersistable<Long> {
 
     @Column
     @NotNull
-    @NotEmpty(message = "{registerForm.error.empty}")
+    @NotEmpty(message = "{error.empty}")
     @Email
     String email;
 

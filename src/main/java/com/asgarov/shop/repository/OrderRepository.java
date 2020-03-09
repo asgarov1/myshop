@@ -8,4 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {
     List<Order> findAll();
+    List<Order> findAllByIdLike(Long id);
+    List<Order> findAllByLocalDateContainingIgnoreCase(String localDate);
+    List<Order> findAllByLastNameContainingIgnoreCase(String searchParameter);
 }

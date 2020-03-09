@@ -1,7 +1,11 @@
 package com.asgarov.shop.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
+import javax.persistence.EntityNotFoundException;
 
 import com.asgarov.shop.entity.User;
 import com.asgarov.shop.repository.UserRepository;
@@ -58,5 +62,18 @@ public class UserService {
 
     public Optional<User> findByEmail(final String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public Set<User> findAllByLastNamePhoneEmail(final String searchParameter) {
+        Set<User> users = new HashSet<>();
+        users.addAll(findAllByLastName(searchParameter));
+        users.addAll(findAllByPhone(searchParameter));
+        users.addAll(findAllByEmail(searchParameter));
+
+        return users;
+    }
+
+    public User findById(final Long id) {
+        return userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 }

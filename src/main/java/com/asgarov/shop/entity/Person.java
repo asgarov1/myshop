@@ -39,23 +39,23 @@ public abstract class Person extends AbstractPersistable<Long> implements UserDe
 
     @Column
     @NotNull
-    @NotEmpty(message = "{registerForm.error.empty}")
+    @NotEmpty(message = "{error.empty}")
     String firstName;
 
     @Column
     @NotNull
-    @NotEmpty(message = "{registerForm.error.empty}")
+    @NotEmpty(message = "{error.empty}")
     String lastName;
 
     @Column
     @NotNull
-    @NotEmpty(message = "{registerForm.error.empty}")
+    @NotEmpty(message = "{error.empty}")
     @Email
     String email;
 
     @Column
     @NotNull
-    @NotEmpty(message = "{registerForm.error.empty}")
+    @NotEmpty(message = "{error.empty}")
     String password;
 
     public Person(String firstName, String lastName, String email, String password) {

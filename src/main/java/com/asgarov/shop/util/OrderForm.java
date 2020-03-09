@@ -16,14 +16,14 @@ import lombok.ToString;
 @ToString
 public class OrderForm {
 
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     private String firstName;
 
     private String lastName;
 
-    @NotEmpty(message="{registerForm.error.empty}")
+    @NotEmpty(message="{error.empty}")
     @Email
-    private String email; //also username
+    private String email;
 
     private String phoneNumber;
 

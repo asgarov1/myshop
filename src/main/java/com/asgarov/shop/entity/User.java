@@ -1,7 +1,11 @@
 package com.asgarov.shop.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -31,8 +35,8 @@ public class User extends Person {
     @Column
     private String country;
 
-    @OneToOne
-    private Cart cart;
+    @OneToMany
+    private List<Order> orders = new ArrayList<>();
 
     public User(
             final String firstName,
@@ -51,6 +55,10 @@ public class User extends Person {
 
     void setRole(){ role = Role.USER; }
 
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
     @Override public String toString() {
         return "User{" +
                 "role=" + role +
@@ -62,7 +70,7 @@ public class User extends Person {
                 ", city='" + city + '\'' +
                 ", postalCode='" + postalCode + '\'' +
                 ", country='" + country + '\'' +
-                ", cart=" + cart +
+                ", orders='" + orders + '\'' +
                 '}';
     }
 }

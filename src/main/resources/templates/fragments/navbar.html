@@ -11,7 +11,7 @@
 
         <!--            Collapsing Content-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto list-unstyled">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link" id="languages" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -36,10 +36,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item" th:unless="#{user}"><a class="nav-link" th:href="@{/addUser}" th:text="#{navbar.signUp}"><span
+                <li class="nav-item"><a class="nav-link" th:href="@{/addUser}" th:text="#{navbar.signUp}"><span
                         class="glyphicon glyphicon-user"></span> Sign Up</a>
                 </li>
-                <li th:unless="#{user}" class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link" href="#" data-toggle="dropdown" th:text="#{navbar.login}">
                         Login
                     </a>
@@ -47,7 +47,6 @@
                         <div th:replace="fragments/login :: login"></div>
                     </div>
                 </li>
-                <li class="nav-item dropdown" th:if="${user}" th:text="|Logged in as ${user.firstName}|"></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" data-toggle="dropdown" th:text="#{navbar.shoppingCart}">
                         Your Shopping Cart</a>
@@ -59,7 +58,7 @@
                                         th:text="#{navbar.checkout}"></span>Checkout</a>
                 </li>
             </ul>
-            <a th:text="#{navbar.admin}" th:href="@{/admin}">Admin</a>
+            <a class="pr-3" th:text="#{navbar.admin}" th:href="@{/admin}">Admin</a>
             <form class="form-inline my-2 my-lg-0" action="/search" method="GET">
                 <input class="form-control mr-sm-2" type="search" name="searchInput"
                        th:placeholder="#{navbar.search}"
